@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>02:17</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕑</text></svg>">
+
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Meta tags para melhor SEO e compartilhamento -->
+  <meta name="description" content="Jogo de horror psicológico - Turno da madrugada no Hospital São Lucas">
+  <meta property="og:title" content="02:17 - Horror Psicológico">
+  <meta property="og:description" content="Nem todas as regras são para sua segurança.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://seusite.com/assets/og-image.png">
+  
+  <!-- Suporte para modo escuro -->
+  <meta name="color-scheme" content="dark">
+  
+  <!-- PWA básico -->
+  <meta name="theme-color" content="#050505">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<!-- MENU PRINCIPAL -->
+<div id="menu" class="active">
+  <div class="menu-content">
+    <h1>02:17</h1>
+    <p class="subtitle">Nem todas as regras são para sua segurança.</p>
+
+    <button id="startGame">▶ Iniciar Turno</button>
+    <button id="openOptions">⚙ Opções</button>
+    
+    <!-- Indicador de progresso no menu -->
+    <div id="menuProgress" class="hidden" style="margin-top: 20px; font-size: 0.8rem; color: var(--text-dim);">
+      <span id="endingsCount">0/13</span> finais • <span id="secretsCount">0</span> segredos
+    </div>
+  </div>
+</div>
+
+<!-- OPÇÕES -->
+<div id="options" class="hidden">
+  <div class="menu-content">
+    <h1>Opções</h1>
+
+    <label>
+      Volume Ambiente
+      <input type="range" id="ambientVolume" min="0" max="0.4" step="0.01" value="0.15">
+      <span id="ambientValue" style="float: right; font-size: 0.8rem;">15%</span>
+    </label>
+
+    <label>
+      Volume Efeitos
+      <input type="range" id="effectsVolume" min="0" max="0.4" step="0.01" value="0.12">
+      <span id="effectsValue" style="float: right; font-size: 0.8rem;">12%</span>
+    </label>
+
+    <label>
+      Velocidade de Digitação
+      <input type="range" id="typingSpeed" min="10" max="60" step="5" value="25">
+      <span id="speedValue" style="float: right; font-size: 0.8rem;">25ms</span>
+    </label>
+    
+    <label style="display: flex; align-items: center; margin-top: 15px;">
+      <input type="checkbox" id="glitchEffects" checked style="margin-right: 10px;">
+      Efeitos de Glitch
+    </label>
+    
+    <label style="display: flex; align-items: center; margin-top: 10px;">
+      <input type="checkbox" id="showTimer" checked style="margin-right: 10px;">
+      Mostrar Indicador
+    </label>
+
+    <button id="backToMenu">← Voltar</button>
+    
+    <!-- Botões de controle -->
+    <div style="margin-top: 20px; display: flex; gap: 10px;">
+      <button id="resetProgress" style="flex: 1; font-size: 0.8rem; padding: 8px;">
+        Limpar Progresso
+      </button>
+      <button id="viewEndings" style="flex: 1; font-size: 0.8rem; padding: 8px;">
+        Ver Finais
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- JOGO -->
+<div id="game" class="hidden">
+  <!-- Indicador de sanidade e tempo será inserido aqui pelo JS -->
+  <div id="gameContent" class="breathing">
+    <h1>02:17</h1>
+    <p id="text"></p>
+    <div id="choices"></div>
+    
+    <!-- Console de debug (opcional, pode ser removido na versão final) -->
+    <div id="debugConsole" class="hidden" style="margin-top: 20px; padding: 10px; background: rgba(0,0,0,0.5); font-size: 0.7rem; color: var(--text-dim);">
+      <div>Sanidade: <span id="debugSanity">100</span></div>
+      <div>Erros: <span id="debugMistakes">0</span></div>
+      <div>Rota: <span id="debugRoute">neutral</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Galeria de finais (modal) -->
+<div id="endingsModal" class="hidden" style="position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+  <div style="background: var(--bg-panel); padding: 30px; border: 1px solid var(--border-color); max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+    <h2>Finais Descobertos</h2>
+    <div id="endingsList" style="margin: 20px 0; line-height: 1.6;"></div>
+    <button id="closeEndings" style="width: 100%; padding: 10px;">Fechar</button>
+  </div>
+</div>
+
+<!-- Script principal -->
+<script src="script.js"></script>
+
+<!-- Script para opções adicionais (opcional) -->
+<script>
+  // Adiciona valores dinâmicos aos sliders
+  document.addEventListener('DOMContentLoaded', function() {
+    const ambientSlider = document.getElementById('ambientVolume');
+    const ambientValue = document.getElementById('ambientValue');
+    const effectsSlider = document.getElementById('effectsVolume');
+    const effectsValue = document.getElementById('effectsValue');
+    const speedSlider = document.getElementById('typingSpeed');
+    const speedValue = document.getElementById('speedValue');
+    const glitchCheckbox = document.getElementById('glitchEffects');
+    const timerCheckbox = document.getElementById('showTimer');
+    
+    function updateSliderValue(slider, valueElement) {
+      const value = Math.round(slider.value * 100);
+      valueElement.textContent = value + '%';
+    }
+    
+    function updateSpeedValue() {
+      speedValue.textContent = speedSlider.value + 'ms';
+    }
+    
+    ambientSlider.addEventListener('input', () => updateSliderValue(ambientSlider, ambientValue));
+    effectsSlider.addEventListener('input', () => updateSliderValue(effectsSlider, effectsValue));
+    speedSlider.addEventListener('input', updateSpeedValue);
+    
+    // Configurações salvas
+    if (localStorage.getItem('gameSettings')) {
+      const settings = JSON.parse(localStorage.getItem('gameSettings'));
+      ambientSlider.value = settings.ambientVolume;
+      effectsSlider.value = settings.effectsVolume;
+      speedSlider.value = settings.typingSpeed;
+      glitchCheckbox.checked = settings.glitchEffects !== false;
+      timerCheckbox.checked = settings.showTimer !== false;
+      
+      updateSliderValue(ambientSlider, ambientValue);
+      updateSliderValue(effectsSlider, effectsValue);
+      updateSpeedValue();
+    }
+    
+    // Salvar configurações
+    function saveSettings() {
+      const settings = {
+        ambientVolume: parseFloat(ambientSlider.value),
+        effectsVolume: parseFloat(effectsSlider.value),
+        typingSpeed: parseInt(speedSlider.value),
+        glitchEffects: glitchCheckbox.checked,
+        showTimer: timerCheckbox.checked
+      };
+      localStorage.setItem('gameSettings', JSON.stringify(settings));
+    }
+    
+    ambientSlider.addEventListener('change', saveSettings);
+    effectsSlider.addEventListener('change', saveSettings);
+    speedSlider.addEventListener('change', saveSettings);
+    glitchCheckbox.addEventListener('change', saveSettings);
+    timerCheckbox.addEventListener('change', saveSettings);
+    
+    // Atualizar inicialmente
+    updateSliderValue(ambientSlider, ambientValue);
+    updateSliderValue(effectsSlider, effectsValue);
+    updateSpeedValue();
+  });
+</script>
+
+</body>
+</html>

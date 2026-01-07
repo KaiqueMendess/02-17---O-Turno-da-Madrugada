@@ -1,0 +1,792 @@
+/* =========================
+   VARIÁVEIS DE TEMA
+========================= */
+:root {
+  --bg-main: #050505;
+  --bg-panel: #0a0a0a;
+  --border-color: #222;
+  --text-main: #e0e0e0;
+  --text-dim: #9a9a9a;
+  --danger: #b30000;
+  --danger-glow: rgba(179, 0, 0, 0.4);
+  --warning: #b38b00;
+  --safe: #00b34d;
+  --safe-glow: rgba(0, 179, 77, 0.4);
+  --time-critical: #ff0066;
+}
+
+/* =========================
+   RESET
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   BODY BASE
+========================= */
+body {
+  background: radial-gradient(ellipse at center, #080808 0%, #020202 100%);
+  color: var(--text-main);
+  font-family: "IBM Plex Mono", monospace;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Efeito de partículas sutis no fundo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(179, 0, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(0, 179, 77, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(179, 0, 0, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* =========================
+   VISIBILIDADE
+========================= */
+.hidden {
+  display: none !important;
+}
+
+/* =========================
+   MENU & OPÇÕES (FULLSCREEN)
+========================= */
+#menu,
+#options {
+  position: fixed;
+  inset: 0;
+
+  /* FUNDO */
+  background-image: 
+    linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.95)),
+    url("assets/menu-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* ESCURECER A IMAGEM */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.menu-content {
+  text-align: center;
+  animation: breathe 6s ease-in-out infinite;
+  background: rgba(10, 10, 10, 0.7);
+  padding: 40px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  max-width: 500px;
+  width: 90%;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#menu button {
+  background: #0d0d0d;
+  color: var(--text-main);
+  border: 1px solid #2a2a2a;
+  padding: 14px 24px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin: 8px;
+  width: 200px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+#menu button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--danger), transparent);
+  transition: left 0.6s ease;
+}
+
+#menu button:hover {
+  background: #141414;
+  border-color: #444;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#menu button:hover::after {
+  left: 100%;
+}
+
+#menu button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   OPÇÕES
+========================= */
+#options .menu-content {
+  animation: none;
+}
+
+#options h1 {
+  margin-bottom: 24px;
+  color: var(--text-main);
+}
+
+#options label {
+  display: block;
+  margin-bottom: 20px;
+  text-align: left;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+#options input[type="range"] {
+  width: 100%;
+  margin-top: 8px;
+  -webkit-appearance: none;
+  height: 2px;
+  background: #333;
+  outline: none;
+}
+
+#options input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--danger);
+  cursor: pointer;
+  border-radius: 0;
+}
+
+#options input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: var(--danger);
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+}
+
+#options button {
+  margin-top: 24px;
+}
+
+/* =========================
+   JOGO (CENTRALIZADO)
+========================= */
+#game {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at center, #060606 0%, #010101 100%);
+}
+
+/* CONTAINER INTERNO */
+#game > * {
+  pointer-events: auto;
+}
+
+#gameContent {
+  width: 700px;
+  max-width: 90%;
+  background: linear-gradient(#0b0b0b, #070707);
+  padding: 32px;
+  border: 1px solid var(--border-color);
+  box-shadow:
+    0 0 60px rgba(0, 0, 0, 0.95),
+    inset 0 0 40px rgba(255, 255, 255, 0.03);
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   SCANLINES
+========================= */
+#gameContent::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* =========================
+   EFEITO DE GLITCH NO FUNDO
+========================= */
+#gameContent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, transparent 49%, rgba(179, 0, 0, 0.03) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(179, 0, 0, 0.02) 50%, transparent 51%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.low-sanity #gameContent::before {
+  opacity: 0.5;
+}
+
+.critical-sanity #gameContent::before {
+  opacity: 0.8;
+  animation: static-flicker 0.5s infinite;
+}
+
+/* =========================
+   INDICADOR DE SANIDADE
+========================= */
+.sanity-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 220px;
+  background: rgba(5, 5, 5, 0.85);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.sanity-bar {
+  height: 8px;
+  background: var(--safe);
+  margin-bottom: 8px;
+  transition: width 0.5s ease, background-color 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sanity-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.time-display {
+  text-align: center;
+  color: var(--text-main);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(179, 0, 0, 0.3);
+  font-weight: 500;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  color: var(--danger);
+  text-shadow: 0 0 12px var(--danger-glow);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--danger), transparent);
+}
+
+/* =========================
+   TEXTO
+========================= */
+#text {
+  white-space: pre-wrap;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  flex-grow: 1;
+  padding: 0 10px;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Cursor de digitação */
+#text::after {
+  content: "█";
+  color: var(--danger);
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+/* =========================
+   ESCOLHAS
+========================= */
+#choices {
+  position: relative;
+  z-index: 2;
+}
+
+#choices button {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: rgba(13, 13, 13, 0.8);
+  color: var(--text-main);
+  border: 1px solid #2a2a2a;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+}
+
+#choices button::before {
+  content: "> ";
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+
+#choices button:hover {
+  background: rgba(20, 20, 20, 0.9);
+  border-color: #444;
+  transform: translateX(5px);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+#choices button:hover::before {
+  color: var(--danger);
+}
+
+#choices button:active {
+  transform: translateX(3px);
+}
+
+/* Números de atalho */
+#choices button[data-key] {
+  position: relative;
+}
+
+#choices button[data-key]::after {
+  content: attr(data-key);
+  position: absolute;
+  right: 15px;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+/* =========================
+   EFEITOS DE SANIDADE
+========================= */
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+.shake {
+  animation: shake 0.15s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-1px, -1px);
+  }
+  5% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(1px, 1px);
+  }
+  10% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-1px, 1px);
+  }
+  15% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(1px, -1px);
+  }
+  20% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-1px, 1px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(0);
+  }
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--danger);
+  animation: glitch 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 var(--safe);
+  animation: glitch 3s infinite linear alternate-reverse;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+/* =========================
+   EFEITOS DE TEMPO CRÍTICO
+========================= */
+.time-critical #gameContent {
+  animation: timePulse 3s infinite;
+  border-color: var(--time-critical);
+}
+
+@keyframes timePulse {
+  0% { box-shadow: 0 0 20px rgba(255, 0, 102, 0.3), inset 0 0 40px rgba(255, 0, 102, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(255, 0, 102, 0.6), inset 0 0 60px rgba(255, 0, 102, 0.1); }
+  100% { box-shadow: 0 0 20px rgba(255, 0, 102, 0.3), inset 0 0 40px rgba(255, 0, 102, 0.05); }
+}
+
+/* =========================
+   FLICKER & BREATHING
+========================= */
+@keyframes flickerFlash {
+  0% { filter: brightness(1) contrast(1); }
+  20% { filter: brightness(0.8) contrast(1.2); }
+  40% { filter: brightness(1.1) contrast(0.9); }
+  60% { filter: brightness(0.9) contrast(1.1); }
+  80% { filter: brightness(1) contrast(1); }
+  100% { filter: brightness(1) contrast(1); }
+}
+
+.flicker {
+  animation: flickerFlash 0.5s linear;
+}
+
+@keyframes static-flicker {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.004); }
+  100% { transform: scale(1); }
+}
+
+.breathing {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+/* =========================
+   ANIMAÇÃO DE SHIMMER
+========================= */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* =========================
+   ANIMAÇÃO DE PISCAR
+========================= */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* =========================
+   EFEITOS DE SANIDADE BAIXA NO CONTAINER
+========================= */
+.low-sanity #gameContent {
+  animation: breathe 4s infinite ease-in-out;
+  border-color: var(--warning);
+}
+
+.low-sanity h1 {
+  text-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
+}
+
+.critical-sanity #gameContent {
+  animation: breathe 2s infinite ease-in-out, static-flicker 1s infinite;
+  border-color: var(--danger);
+}
+
+.critical-sanity #text {
+  color: #ff9999;
+}
+
+/* =========================
+   VINHETA
+========================= */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 200px rgba(0,0,0,0.95);
+  z-index: 1;
+}
+
+/* =========================
+   BOTÃO VOLTAR AO MENU
+========================= */
+#backToMenu {
+  margin-top: 24px;
+  padding: 12px 16px;
+  width: 100%;
+
+  background: transparent;
+  color: var(--text-dim);
+
+  border: 1px dashed #333;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#backToMenu::before {
+  content: "< ";
+  color: var(--danger);
+  transition: color 0.3s ease;
+}
+
+#backToMenu::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(179, 0, 0, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+#backToMenu:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border-color: #555;
+  border-style: solid;
+  transform: translateX(-3px);
+}
+
+#backToMenu:hover::before {
+  color: var(--text-main);
+}
+
+#backToMenu:hover::after {
+  left: 100%;
+}
+
+#backToMenu:active {
+  transform: translateX(-1px);
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 768px) {
+  .menu-content {
+    padding: 24px;
+    width: 95%;
+  }
+  
+  #gameContent {
+    width: 95%;
+    padding: 20px;
+    min-height: 400px;
+  }
+  
+  #text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  #choices button {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .sanity-indicator {
+    width: 160px;
+    top: 10px;
+    right: 10px;
+    padding: 8px;
+  }
+  
+  .time-display {
+    font-size: 12px;
+  }
+  
+  h1 {
+    font-size: 1.2rem;
+  }
+  
+  #menu button {
+    width: 180px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-content {
+    padding: 16px;
+  }
+  
+  #gameContent {
+    padding: 16px;
+  }
+  
+  #text {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+  
+  #choices button {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    margin-top: 8px;
+  }
+  
+  .sanity-indicator {
+    width: 140px;
+    font-size: 10px;
+  }
+  
+  .time-display {
+    font-size: 11px;
+  }
+  
+  h1 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================
+   ANIMAÇÃO DE INICIALIZAÇÃO
+========================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#gameContent,
+.menu-content {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* =========================
+   ESTADO DESABILITADO
+========================= */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+button:disabled:hover {
+  background: #0d0d0d;
+  border-color: #2a2a2a;
+  box-shadow: none;
+}
+
+/* =========================
+   SCROLLBAR PERSONALIZADA
+========================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}

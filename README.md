@@ -1,60 +1,72 @@
-📖 README - 02:17: O Turno da Madrugada
-https://img.shields.io/badge/02:17-Horror_Narrativo-8b0000
-https://img.shields.io/badge/STATUS-COMPLETO-green
-https://img.shields.io/badge/TECH-HTML5_CSS3_JS-ff6b6b
-https://img.shields.io/badge/LICENSE-MIT-blue
+# 02:17 - O Turno da Madrugada
 
-<p align="center"> <img src="https://img.shields.io/badge/PLAY%20NOW-https://seuusuario.github.io/02-17/8b0000" alt="Play Now"> <img src="https://img.shields.io/badge/17+-ENDINGS-purple" alt="17+ Endings"> <img src="https://img.shields.io/badge/100%25-Client_Side-orange" alt="100% Client Side"> </p>
-🏥 SINOPSE
-02:17 - O Turno da Madrugada é um jogo de horror psicológico narrativo onde você assume o papel de um guarda noturno no Hospital São Lucas. Seu turno começa às 02:00 e termina às 06:00. As regras para sobrevivência estão escritas em uma folha amarelada... mas e se essas regras estiverem mentindo?
+![Capa do Jogo](0217.png)
 
-"Quanto mais você obedece, mais real Ele se torna."
+<p align="center">
+  <img src="https://img.shields.io/badge/02:17-Horror_Narrativo-8b0000" alt="02:17 - Horror Narrativo">
+  <img src="https://img.shields.io/badge/STATUS-COMPLETO-green" alt="Status Completo">
+  <img src="https://img.shields.io/badge/TECH-HTML5_CSS3_JS-ff6b6b" alt="Tecnologias">
+  <img src="https://img.shields.io/badge/LICENSE-MIT-blue" alt="Licença MIT">
+</p>
 
-🎮 CARACTERÍSTICAS PRINCIPAIS
-🧠 Sistema de Sanidade Dinâmico
-Sua sanidade afeta texto, sons e visuais
+<p align="center">
+  <img src="https://img.shields.io/badge/PLAY%20NOW-https://kaiquemendess.github.io/02-17---O-Turno-da-Madrugada/8b0000" alt="Play Now">
+  <img src="https://img.shields.io/badge/17+-ENDINGS-purple" alt="17+ Endings">
+  <img src="https://img.shields.io/badge/100%25-Client_Side-orange" alt="100% Client Side">
+</p>
 
-Efeitos visuais degradam progressivamente (glitch, shake, flicker)
+---
 
-Múltiplos estados mentais alteram a narrativa
+## 🏥 Sinopse
 
-Histórico de sanidade para análise pós-jogo
+**02:17 - O Turno da Madrugada** é um jogo de horror psicológico narrativo onde você assume o papel de um guarda noturno no Hospital São Lucas. Seu turno começa às 02:00 e termina às 06:00. As regras para sobrevivência estão escritas em uma folha amarelada... mas e se essas regras estiverem mentindo?
 
-📖 Narrativa Não-Linear
-50+ cenas interconectadas
+*"Quanto mais você obedece, mais real Ele se torna."*
 
-17+ finais diferentes baseados em suas escolhas
+---
 
-Sistema de flags e condições complexas
+## 🎮 Características Principais
 
-Múltiplos caminhos para cada jogador
+### 🧠 Sistema de Sanidade Dinâmico
 
-🔊 Sistema de Áudio Imersivo
-3 camadas de áudio ambiente que evoluem com sua sanidade
+* Sua sanidade afeta texto, sons e visuais.
+* Efeitos visuais degradam progressivamente (glitch, shake, flicker).
+* Múltiplos estados mentais alteram a narrativa.
+* Histórico de sanidade para análise pós-jogo.
 
-13 efeitos sonoros reativos
+### 📖 Narrativa Não-Linear
 
-Crossfade suave entre estados mentais
+* 50+ cenas interconectadas.
+* 17+ finais diferentes baseados em suas escolhas.
+* Sistema de flags e condições complexas.
+* Múltiplos caminhos para cada jogador.
 
-Pistas auditivas ocultas na trilha sonora
+### 🔊 Sistema de Áudio Imersivo
 
-🎯 Mecânicas Únicas
-Sistema de itens colecionáveis
+* 3 camadas de áudio ambiente que evoluem com sua sanidade.
+* 13 efeitos sonoros reativos.
+* Crossfade suave entre estados mentais.
+* Pistas auditivas ocultas na trilha sonora.
 
-Segredos desbloqueáveis
+### 🎯 Mecânicas Únicas
 
-Galeria de finais
+* Sistema de itens colecionáveis.
+* Segredos desbloqueáveis.
+* Galeria de finais.
+* Progresso salvo entre sessões.
+* Efeitos baseados em horários específicos (02:17, 03:03).
 
-Progresso salvo entre sessões
+---
 
-Efeitos baseados em horários específicos (02:17, 03:03)
+## 🚀 Como Jogar
 
-🚀 COMO JOGAR
-Online (Recomendado)
-Acesse: https://seuusuario.github.io/02-17/
+### Online (Recomendado)
 
-Localmente
+Acesse: [Jogar Agora](https://kaiquemendess.github.io/02-17---O-Turno-da-Madrugada/)
 
+### Localmente
+
+```bash
 # 1. Clone o repositório
 git clone https://github.com/seuusuario/02-17.git
 
@@ -69,22 +81,32 @@ python -m http.server 8000
 npx serve
 
 # 4. Acesse no navegador
-# http://localhost:8000
+http://localhost:8000
+```
 
-🛠️ TECNOLOGIAS UTILIZADAS
-Tecnologia	Uso
-HTML5	Estrutura do jogo e semântica
-CSS3	Animações, efeitos visuais, responsividade
-JavaScript Vanilla	Lógica completa do jogo
-ElevenLabs API	Geração de áudio para efeitos sonoros
-LocalStorage	Salvamento de progresso
-GitHub Pages	Hospedagem gratuita
-📁 ESTRUTURA DO PROJETO
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Tecnologia     | Uso                                        |
+| -------------- | ------------------------------------------ |
+| HTML5          | Estrutura do jogo e semântica              |
+| CSS3           | Animações, efeitos visuais, responsividade |
+| JavaScript     | Lógica completa do jogo                    |
+| ElevenLabs API | Geração de áudio para efeitos sonoros      |
+| LocalStorage   | Salvamento de progresso                    |
+| GitHub Pages   | Hospedagem gratuita                        |
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
 02-17/
-├── index.html              # Página principal
-├── style.css              # Estilos principais
-├── script.js             # Lógica completa do jogo
-├── audio/                # Efeitos sonoros
+├── index.html          # Página principal
+├── style.css           # Estilos principais
+├── script.js           # Lógica completa do jogo
+├── audio/              # Efeitos sonoros
 │   ├── ambient_normal.mp3
 │   ├── ambient_low.mp3
 │   ├── ambient_broken.mp3
@@ -98,21 +120,30 @@ GitHub Pages	Hospedagem gratuita
 │   ├── heartbeat.mp3
 │   ├── clock_tick.mp3
 │   └── whisper.mp3
-├── assets/               # Imagens e ícones (se houver)
-└── README.md            # Este arquivo
-🎨 SISTEMA TÉCNICO
-Arquitetura do Jogo
-// Estrutura principal
-const gameState = {
-    sanity: 100,            // 0-100, afeta tudo
-    route: "neutral",       // Rota narrativa atual
-    time: "01:58",         // Tempo interno do jogo
-    items: [],             // Itens coletados
-    secrets: [],           // Segredos descobertos
-    discoveredEndings: []  // Finais desbloqueados
-};
+├── assets/            # Imagens e ícones
+└── README.md          # Este arquivo
+```
 
-// Sistema de cenas
+---
+
+## 🎨 Sistema Técnico
+
+### Arquitetura do Jogo
+
+```js
+const gameState = {
+    sanity: 100,
+    route: "neutral",
+    time: "01:58",
+    items: [],
+    secrets: [],
+    discoveredEndings: []
+};
+```
+
+### Sistema de Cenas
+
+```js
 const scenes = {
     start: {
         text: () => "Texto da cena...",
@@ -126,164 +157,131 @@ const scenes = {
         ]
     }
 };
+```
 
-Features Implementadas
-✅ Sistema completo de sanidade
+---
 
-✅ 17+ finais com galeria
+## 🔮 Rotas e Finais
 
-✅ 50+ cenas interconectadas
+### Principais Rotas Narrativas
 
-✅ Sistema de áudio reativo
+* **Obediente** - Seguir todas as regras
+* **Curioso** - Explorar além do permitido
+* **Rebelde** - Desafiar as regras
+* **Suspeito** - Descobrir segredos ocultos
+* **Quebrado** - Perder totalmente a sanidade
 
-✅ Efeitos visuais dinâmicos
+### Alguns Finais
 
-✅ Salvamento automático
+* **O Paciente** - Aceitar a rotina
+* **O Iluminado** - Compreender a verdade
+* **O Fantasma** - Tornar-se parte do hospital
+* **O Vazio** - Destruir todas as regras
+* **O Sonhador** - Despertar do pesadelo
 
-✅ Controles por teclado
+---
 
-✅ Interface responsiva
+## 🎵 Sistema de Áudio
 
-✅ Sistema de segredos
-
-✅ Mecânicas de tempo real
-
-🔮 ROTAS E FINAIS
-Principais Rotas Narrativas
-Obediente - Seguir todas as regras
-
-Curioso - Explorar além do permitido
-
-Rebelde - Desafiar as regras
-
-Suspeito - Descobrir segredos ocultos
-
-Quebrado - Perder totalmente a sanidade
-
-Alguns Finais
-O Paciente - Aceitar a rotina
-
-O Iluminado - Compreender a verdade
-
-O Fantasma - Tornar-se parte do hospital
-
-O Vazio - Destruir todas as regras
-
-O Sonhador - Despertar do pesadelo
-
-🎵 SISTEMA DE ÁUDIO
-O jogo utiliza um sistema de áudio em três camadas:
-// Exemplo do sistema de áudio
+```js
 const ambientLayers = {
-    normal: "audio/ambient_normal.mp3",   // Sanidade > 60
-    low: "audio/ambient_low.mp3",         // Sanidade 20-60  
-    broken: "audio/ambient_broken.mp3"    // Sanidade < 20
+    normal: "audio/ambient_normal.mp3",
+    low: "audio/ambient_low.mp3",
+    broken: "audio/ambient_broken.mp3"
 };
 
-// Transição suave entre camadas
 function updateAmbientSound() {
     let src = gameState.sanity <= 20 ? ambientLayers.broken :
               gameState.sanity <= 60 ? ambientLayers.low :
               ambientLayers.normal;
     // Crossfade automático
 }
+```
 
-🎯 CONTROLES
-Mouse
-Clique: Selecionar opções
+---
 
-Hover: Visualizar botões
+## 🎯 Controles
 
-Teclado
-1-9: Atalhos para opções numeradas
+**Mouse**
 
-Enter: Pular digitação de texto
+* Clique: Selecionar opções
+* Hover: Visualizar botões
 
-ESC: Voltar ao menu (nas opções)
+**Teclado**
 
-📊 ESTATÍSTICAS DO PROJETO
-Linhas de código: ~2.500
+* 1-9: Atalhos para opções numeradas
+* Enter: Pular digitação de texto
+* ESC: Voltar ao menu (nas opções)
 
-Cenas implementadas: 50+
+---
 
-Efeitos sonoros: 13
+## 📊 Estatísticas do Projeto
 
-Animações CSS: 15+
+* Linhas de código: ~2.500
+* Cenas implementadas: 50+
+* Efeitos sonoros: 13
+* Animações CSS: 15+
+* Variáveis de estado: 20+
+* Tamanho total: < 3MB
 
-Variáveis de estado: 20+
+---
 
-Tamanho total: < 3MB
+## 🤝 Contribuição
 
-🚀 DEPLOY NO GITHUB PAGES
-No repositório do GitHub:
-
-# Push do código
-git add .
-git commit -m "Initial commit"
-git push origin main
-
-Configurar GitHub Pages:
-
-Vá em Settings > Pages
-
-Branch: main
-
-Folder: / (root)
-
-Salve
-
-Seu jogo estará em:
-https://[seu-usuario].github.io/[nome-repo]/
-🤝 CONTRIBUIÇÃO
 Encontrou um bug? Tem uma ideia para melhoria?
 
-Fork o projeto
+1. Fork o projeto
+2. Crie uma branch: `git checkout -b feature/NovaFeature`
+3. Commit suas mudanças: `git commit -m 'Add: Nova feature'`
+4. Push para a branch: `git push origin feature/NovaFeature`
+5. Abra um Pull Request
 
-Crie uma branch (git checkout -b feature/NovaFeature)
+Áreas de contribuição:
 
-Commit suas mudanças (git commit -m 'Add: Nova feature')
+* 🔧 Correção de bugs
+* 🎨 Melhorias visuais
+* 🔊 Novos efeitos sonoros
+* 📖 Traduções
+* 📱 Responsividade mobile
+* 🎯 Balanceamento de dificuldade
 
-Push para a branch (git push origin feature/NovaFeature)
+---
 
-Abra um Pull Request
+## 📝 Licença
 
-Áreas para contribuição:
-🔧 Correção de bugs
-
-🎨 Melhorias visuais
-
-🔊 Novos efeitos sonoros
-
-📖 Traduções
-
-📱 Responsividade mobile
-
-🎯 Balanceamento de dificuldade
-
-📝 LICENÇA
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
-👨‍💻 AUTOR
-Kaique Da Silva Mendes - GitHub - LinkedIn
+---
 
-Agradecimentos Especiais
-ElevenLabs pela API de áudio
+## 👨‍💻 Autor
 
-Comunidade de game dev no Discord
+**Kaique Da Silva Mendes**
 
-Todos os testadores beta
+* [GitHub](https://github.com/kaiquemendess)
+* [LinkedIn](https://www.linkedin.com/in/kaiquemendess/)
 
-Você, por jogar! 🎮
+**Agradecimentos Especiais**
 
-🌟 APOIE O PROJETO
+* ElevenLabs pela API de áudio
+* Comunidade de game dev no Discord
+* Todos os testadores beta
+* Você, por jogar! 🎮
+
+---
+
+## 🌟 Apoie o Projeto
+
 Se você gostou do jogo, considere:
-
 ⭐ Dar uma estrela no GitHub
-
-🐛 Reportar bugs encontrados
-
+🐛 Reportar bugs
 💬 Compartilhar com amigos
-
 🎮 Sugerir novas features
 
-<p align="center"> <b>Lembre-se: Não olhe para o corredor após 02:17.</b><br> <i>"Às 03:03, esqueça todas as regras anteriores."</i> </p><p align="center"> <img src="https://img.shields.io/badge/JOGUE%20AGORA-https://seuusuario.github.io/02-17/red" alt="Jogue Agora"> </p>
+<p align="center">
+  <b>Lembre-se: Não olhe para o corredor após 02:17.</b><br>
+  <i>"Às 03:03, esqueça todas as regras anteriores."</i>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/JOGUE%20AGORA-https://kaiquemendess.github.io/02-17---O-Turno-da-Madrugada/red" alt="Jogue Agora">
+</p>

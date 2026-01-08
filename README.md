@@ -1,6 +1,9 @@
 # 02:17 - O Turno da Madrugada
 
-![Capa do Jogo](0217.png)
+<p align="center">
+  <img src="0217.png" alt="Capa do Jogo" width="400">
+</p>
+
 
 <p align="center">
   <img src="https://img.shields.io/badge/02:17-Horror_Narrativo-8b0000" alt="02:17 - Horror Narrativo">

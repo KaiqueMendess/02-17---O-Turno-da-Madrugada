@@ -189,7 +189,7 @@ function playSpecialSound(time) {
 }
 
 /* =========================
-   SISTEMA DE SANIDADE EXPANDIDO - CORRIGIDO
+   SISTEMA DE SANIDADE 
 ========================= */
 function changeSanity(amount) {
   const oldSanity = gameState.sanity;
@@ -3331,4 +3331,5 @@ function initGame() {
 window.addEventListener("DOMContentLoaded", initGame);
 
 // Variável global para rastrear cena atual (para debug)
+
 let currentScene = "start";
